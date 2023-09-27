@@ -9,7 +9,7 @@
 #include <mysql.h>
 #include <time.h>
 
-#define MESSAGE_LENGTH 1024 // Максимальный размер буфера для данных
+#define MESSAGE_LENGTH 1024 // Maximum data buffer size
 
 class Chat
 {
