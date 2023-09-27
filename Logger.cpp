@@ -10,7 +10,7 @@ Logger::Logger(const std::string& date_time, const std::string& text) : _date_ti
 Logger::Logger()
 {
 	if (!user_file) {
-		// Для создания файла используем параметр ios::trunc
+		// To create a file we use the parameter ios::trunc
 		user_file = std::fstream("log.txt", std::ios::in | std::ios::out | std::ios::trunc);
 	}
 	if (!user_file) {
@@ -49,7 +49,7 @@ void Logger::writelog(const std::string& text)
 
 void Logger::readlog()
 {
-    // Считываем данные из файла
+    // Read data from the file
 	user_file = std::fstream("log.txt", std::ios::in);
 	user_file.seekg(0, std::ios_base::beg);
 	std::string str;
