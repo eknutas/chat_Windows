@@ -1,1 +1,1 @@
-Учебный клиент-серверный консольный чат для ОС Windows. В проект сервера входят файлы main.cpp, Chat.cpp, Chat.h, Logger.cpp, Logger.h, SConnect.cpp, SConnect.h и Makefile. В проект клиента входит файл client.cpp.
+Учебный клиент-серверный консольный чат для ОС Windows. В проект сервера входят файлы main.cpp, Chat.cpp, Chat.h, Logger.cpp, Logger.h, SConnect.cpp, SConnect.h и Makefile. Пользователи и их сообщения сохраняются в базе MySQL. Логи пишутся в файл log.txt. В проект клиента входит файл client.cpp.
