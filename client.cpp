@@ -12,8 +12,8 @@
 #pragma comment (lib, "Mswsock.lib")
 #pragma comment (lib, "AdvApi32.lib")
 
-#define DEFAULT_BUFLEN 1024  // Максимальный размер буфера для данных
-#define DEFAULT_PORT "7777" // Будем использовать этот номер порта
+#define DEFAULT_BUFLEN 1024  // Maximum data buffer size
+#define DEFAULT_PORT "7777" // Will use this port number
 #define DEFAULT_ADDRESS "127.0.0.1"
 
 int main()
@@ -63,10 +63,10 @@ int main()
         return 1;
     }
 
-    // Взаимодействие с сервером
+    // Interaction with the server
     while (true)
     {
-        // Ждем сообщения от сервера
+        // Waiting for a message from the server
         recv(ConnectSocket, message, sizeof(message), 0);
         std::cout << message << '\n';
         if ((strncmp(message, "Goodbye!", 8)) == 0) {
