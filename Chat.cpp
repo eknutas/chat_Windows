@@ -6,7 +6,7 @@ void Chat::chatting(const std::string& _from)
 {
 	std::string str = "\033[2J\033[1;1H";	// Clearing the console
 	str += "Hello, " + _from + '\n';
-	mysql_query(&mysql, "SELECT * FROM messages"); // Делаем запрос к таблице
+	mysql_query(&mysql, "SELECT * FROM messages"); // Query the table
 	_to = "all";
 	if (res = mysql_store_result(&mysql)) {
 		while (row = mysql_fetch_row(res)) {
@@ -34,7 +34,7 @@ void Chat::chatting(const std::string& _from)
 
 void Chat::logIn()
 {
-	mysql_query(&mysql, "SELECT * FROM users"); // Делаем запрос к таблице
+	mysql_query(&mysql, "SELECT * FROM users"); // Query the table
 	if (mysql_fetch_row(mysql_store_result(&mysql)) == 0) {
 		throw "No user, registration required!";
 	}
@@ -42,7 +42,7 @@ void Chat::logIn()
 	_login = socketRead();
 	socketWrite("Enter password: ");
 	_password = socketRead();
-	mysql_query(&mysql, "SELECT * FROM users"); // Делаем запрос к таблице
+	mysql_query(&mysql, "SELECT * FROM users"); // Query the table
 	if (res = mysql_store_result(&mysql)) {
 		while (row = mysql_fetch_row(res)) {
 			if (_login == row[2] && _password == row[3]) {	// Login and password verification
@@ -61,7 +61,7 @@ void Chat::checkIn()
 	if (_name == "all") {
 		throw "This name is busy! Please enter another name.";
 	}
-	mysql_query(&mysql, "SELECT * FROM users"); // Делаем запрос к таблице
+	mysql_query(&mysql, "SELECT * FROM users"); // Query the table
 	if (res = mysql_store_result(&mysql)) {
 		while (row = mysql_fetch_row(res)) {
 			if (_name == row[1]) {
@@ -70,7 +70,7 @@ void Chat::checkIn()
 	}
 	socketWrite("Enter new user login: ");
 	_login = socketRead();
-	mysql_query(&mysql, "SELECT * FROM users"); // Делаем запрос к таблице
+	mysql_query(&mysql, "SELECT * FROM users"); // Query the table
 	if (res = mysql_store_result(&mysql)) {
 		while (row = mysql_fetch_row(res)) {
 			if (_login == row[2]) {
@@ -101,12 +101,12 @@ void Chat::mysqlopen()
 {
 	mysql_init(&mysql);
 	if (&mysql == nullptr) {
-		// Если дескриптор не получен — выводим сообщение об ошибке
+		// If the descriptor is not received - display an error message
 		throw "Error: can't create MySQL-descriptor";
 	}
- 	// Подключаемся к серверу
+ 	// Connecting to the server
 	if (!mysql_real_connect(&mysql, "localhost", "root", "aL355caN", "chatdb", 0, NULL, 0)) {
-		// Если нет возможности установить соединение с БД выводим сообщение об ошибке
+		// If it is not possible to establish a connection to the database, display an error message
 		throw "Error: can't connect to database ";
 	}
 	mysql_query(&mysql, "CREATE TABLE IF NOT EXISTS users(id INT AUTO_INCREMENT PRIMARY KEY, name_ VARCHAR(255), login_ VARCHAR(255), password_ VARCHAR(255))");
